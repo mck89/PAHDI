@@ -1,4 +1,4 @@
-<?php
+ï»¿<?php
 /**
  * This file is part of the PAHDI (PHP Advanced HTML Dom Implementation)
  * library, for the full copyright and license information, please view
@@ -6,9 +6,9 @@
  *
  * @category    PAHDI
  * @package     PAHDI-Parser
- * @author      Marco Marchiò
+ * @author      Marco MarchiÃ²
  * @license     http://opensource.org/licenses/bsd-license.php The BSD License
- * @copyright	Copyright (c) 2011, Marco Marchiò
+ * @copyright	Copyright (c) 2011, Marco MarchiÃ²
  */
  
 /**
@@ -3558,7 +3558,7 @@ class ParserHTMLBuilder extends ParserHTMLTokenizer
 			//4. Otherwise, set node to the previous entry in the stack of
 			//open elements and return to step 2. (This will never fail, since
 			//the loop will always terminate in the previous step if the top
-			//of the stack — an html  element — is reached.)
+			//of the stack â€” an html  element â€” is reached.)
 			$index--;
 		}
 	}

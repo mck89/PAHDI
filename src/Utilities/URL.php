@@ -1,4 +1,4 @@
-<?php
+ï»¿<?php
 /**
  * This file is part of the PAHDI (PHP Advanced HTML Dom Implementation)
  * library, for the full copyright and license information, please view
@@ -6,9 +6,9 @@
  *
  * @category    Utilities
  * @package     PAHDI-Utilities
- * @author      Marco Marchiò
+ * @author      Marco MarchiÃ²
  * @license     http://opensource.org/licenses/bsd-license.php The BSD License
- * @copyright	Copyright (c) 2011, Marco Marchiò
+ * @copyright	Copyright (c) 2011, Marco MarchiÃ²
  */
  
 /**

@@ -1,4 +1,4 @@
-PAHDI
+﻿PAHDI
 ===========
 
 PAHDI (PHP Advanced HTML DOM Implementation) is a library that provides an advanced implementation of the Document Object Model in PHP starting from HTML code.
