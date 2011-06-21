@@ -1,0 +1,1 @@
+<html><head></head><body><math xmlns="http://www.w3.org/1998/Math/MathML">\n\t<msup>\n\t\s\s<mrow>\n\t\t<mi><malignmark edge="right"></malignmark></mi>\n\t\s\s</mrow>\n\t\s\s<mn>\s2\s</mn>\n\t</msup>\n</math></body></html>

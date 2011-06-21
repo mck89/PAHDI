@@ -1,0 +1,21 @@
+a{
+	background-color:blue;
+}
+
+/*Invalid because the name is missing*/
+@-webkit-keyframes {
+	0% { top: 0px; left: 0px }
+	30% { top: 50px }
+	70% { left: 50px }
+	100% { top: 100px; left: 100% }
+}
+
+/*Invalid because the media string is missing*/
+@media {
+	body{
+		margin:20px;
+	}
+	div{
+		color:red;
+	}
+}

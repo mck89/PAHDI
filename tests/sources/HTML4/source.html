@@ -1,0 +1,99 @@
+﻿<!DOCTYPE HTML>
+<html class="split chapter" lang="en-US-x-hixie"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>9 Communication - HTML5 (including next generation additions 
+still in development)</title><script>
+	window.fff=6;
+  </script><link href="comms_files/specification.css" rel="stylesheet"><link
+ href="http://www.whatwg.org/images/icon" rel="icon"><style>
+	.proposal { border: blue solid; padding: 1em; }
+	.rfc2119.s\hould::after { content: '\2606'; }
+	[hidden] { display: none; }
+  </style><style type="text/css">
+	.applies thead th > * { display: block; }
+	@font-face {
+	 font-family: 'Essays1743';
+	}
+  </style><style>
+	.domintro:before { display: table; margin: -1em -0.5em -0.5em auto; width: auto; content: 'This box is non-normative. Implementation requirements are given below this box.'; color: black; font-style: italic; border: solid 2px; background: white; padding: 0 0.25em; }
+  </style><link 
+href="data:text/css,.impl%20%7B%20background:%20%23FFEEEE;%20%7D%20.domintro:before%20%7B%20background:%20%23FFEEEE;%20%7D"
+ id="highlight" rel="alternate stylesheet" title="Highlight 
+implementation requirements"><link href="comms_files/status.css" 
+rel="stylesheet"><script>
+	window.ggg=7;
+  </script>
+  <script src="comms_files/link-fixup.js"></script>
+  <link href="http://www.whatwg.org/specs/web-apps/current-work/multipage/dnd.html" rel="prev" title="8.9 Drag and drop">
+  </head><body class="draft dfnEnabled" onload="fixBrokenLink(); init()"><header
+ class="head" id="head"><p><a class="logo" href="http://www.whatwg.org/"
+ rel="home"><img alt="WHATWG" src="comms_files/logo.png" height="101" 
+width="101"></a></p>
+	<hgroup><h1>HTML5 (including next generation additions still in 
+development)</h1>
+	<h2 class="no-num no-toc">Draft Standard - 10 September 2010</h2>
+	</hgroup></header><nav>
+	<a 
+href="http://www.whatwg.org/specs/web-apps/current-work/multipage/dnd.html"><-
+ 8.9 Drag and drop</a> -
+	<a 
+href="http://www.whatwg.org/specs/web-apps/current-work/multipage/index.html#contents">Table
+ of contents</a> -
+	<a 
+href="http://www.whatwg.org/specs/web-apps/current-work/multipage/syntax.html">10
+ The HTML syntax -></a>
+  <ol class="toc"><li><a 
+href="http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#comms"><span
+ class="secno">9 </span>Communication</a>
+  <ol><li><a 
+href="http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#channel-messaging"><span
+ class="secno">9.3 </span>Channel messaging</a>
+	<ol><li><a 
+href="http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#message-ports"><span
+ class="secno">9.3.3 </span>Message ports</a>
+		<ol><li><a 
+href="http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#ports-and-garbage-collection"><span
+ class="secno">9.3.3.1 </span>Ports and garbage collection</a></li></ol></li></ol></li></ol></li></ol></nav>
+<div data-component="Web Messaging (editor: Ian Hickson)">
+
+  <div class="impl">
+
+	<p class="note">If those two previously entangled ports were the
+	two ports of a <code><a href="#messagechannel">MessageChannel</a></code>
+ object, then that
+	<code><a href="#messagechannel">MessageChannel</a></code> object no 
+longer represents an actual
+	channel: the two ports in that object are no longer entangled.</p>
+	</li>
+	<li><p>Associate the two ports to be entangled, so that they form
+	the two parts of a new channel. (There is no
+	<code><a href="#messagechannel">MessageChannel</a></code> object that
+ represents this
+	channel.)
+  </p></li></ol><hr><!-- v2-onclose
+  <p>The <dfn title="dom-MessagePort-active"><code>active</code></dfn>
+  attribute must return true if the port is entangled, and false
+  otherwise.</p>
+  <hr>
+-->
+  <table><thead><tr><th><a 
+href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-handlers"
+ title="event handlers">Event handler</a> </th><th><a 
+href="http://www.whatwg.org/specs/web-apps/current-work/multipage/webappapis.html#event-handler-event-type">Event
+ handler event type</a>
+	</th></tr></thead><tbody><tr><td><dfn 
+id="handler-messageport-onmessage" title="handler-MessagePort-onmessage"><code>onmessage</code></dfn>
+ </td><td> <code title="event-message"><a href="#event-message">message</a></code>
+  </td></tr></tbody></table><p>The first time a <code><a 
+href="#messageport">MessagePort</a></code> object's <code 
+title="handler-MessagePort-onmessage"><a 
+href="#handler-messageport-onmessage">onmessage</a></code> IDL attribute
+  is set, the port's <a href="#port-message-queue">port message queue</a>
+ must be enabled,
+  as if the <code title="dom-MessagePort-start"><a 
+href="#dom-messageport-start">start()</a></code> method
+  had been called.</p>
+  </div>
+
+</div><!--data-component-->
+</body></html>

@@ -1,0 +1,1 @@
+<html><head>\n\t\t<title>Site\sTitle</title>\n\t</head>\n\t<frameset rows="0,\s24,100%,\s55" frameborder="0" framespacing="0">\n\t\t<frame name="header" src="header.php" scrolling="no" noresize=""></frame>\n\t\t<frame name="main" src="index.php" noresize=""></frame>\n\t\t<frame name="footer" src="footer.php" scrolling="no" noresize=""></frame>\n\t</frameset>\n</html>

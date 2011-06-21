@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+@import "fold/test.css" screen and (min-width: 400px), print;
+
+@media screen and (min-width: 400px), (max-width: 700px){
+	body{
+		margin-right:20px;
+	}
+	div{
+		color:red;
+		width : 20%;
+	}
+}
+
+@-webkit-keyframes keyname{
+	0% { top: 0px; left: 0px }
+	30% { top: 50px }
+	70% { left: 50px }
+	100% { top: 100px; left: 100% }
+}
+
+@font-face{
+	font-family:Arial;
+}
+
+@page :left{
+	margin-left:0;
+}
+
+div{
+	color:red;
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+		backupGlobals="false"
+		backupStaticAttributes="false"
+		syntaxCheck="false"
+		verbose="true"
+		bootstrap="bootstrap.php">
+	<testsuites>
+		<testsuite name="PAHDITestSuite">
+			<directory>PAHDI/Parser</directory>
+			<directory>PAHDI</directory>
+		</testsuite>
+	</testsuites>
+	<listeners>
+		<listener class="PAHDIListener" file="PAHDIListener.php">
+			<arguments>
+			</arguments>
+		</listener>
+	</listeners>
+</phpunit>
