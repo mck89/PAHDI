@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * This file is part of the PAHDI (PHP Advanced HTML Dom Implementation)
  * library, for the full copyright and license information, please view
