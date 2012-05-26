@@ -16,6 +16,7 @@
  *
  * @category    	PAHDI
  * @package     	PAHDI-DOM
+ * @property-read	SVGSVGElement	$ownerSVGElement	Nearest ancestor SVG
  */
 class SVGElement extends Element
 {
@@ -25,4 +26,52 @@ class SVGElement extends Element
 	 * @var		string
 	 */
 	public $namespaceURI = ParserHTML::SVG_NAMESPACE;
+	
+	/**
+	 * Provides a way to access some properties
+	 *
+	 * @param	string	$name	Property name
+	 * @return	mixed	Property value
+	 * @ignore
+	 */
+	function __get ($name)
+	{
+		switch ($name) {
+			case "ownerSVGElement":
+				if (!$this->parentNode) {
+					return null;
+				} elseif ($this->parentNode->nodeType === self::ELEMENT_NODE &&
+					$this->parentNode->tagName === "svg") {
+					return $this->parentNode;
+				} else {
+					return $this->parentNode->ownerSVGElement;
+				}
+			break;
+			default:
+				return parent::__get($name);
+			break;
+		}
+		return null;
+	}
+	
+	/**
+	 * Provides a way to set some properties
+	 *
+	 * @param	string	$name	Property name
+	 * @param	mixed	$value	Property value
+	 * @return	void
+	 * @ignore
+	 */
+	function __set ($name, $value)
+	{
+		switch ($name) {
+			case "ownerSVGElement":
+				$msg = "Setting a property that has only a getter";
+				throw new DomException($msg);
+			break;
+			default:
+				parent::__set($name, $value);
+			break;
+		}
+	}
 }

@@ -10,7 +10,7 @@ class ParserHTMLTest extends PAHDITest
 	{
 		list($html, $test) = $this->loadTestSource($source);
 		$timer = self::startTimer();
-		$options=array("encoding"=>$encoding);
+		$options = array("encoding"=>$encoding);
 		$document = $this->parseHTML($html, $options);
 		self::markTime($timer, "Parsed source $source");
 		$serialized = $this->serializeNode($document);
@@ -43,7 +43,7 @@ class ParserHTMLTest extends PAHDITest
 			array("HTML9", false, "ISO-8859-1"),
 			array("HTML10", false, "ISO-8859-1"),
 			array("HTML11", false, "ISO-8859-1"),
-			array("SVG1", false, "ISO-8859-1"),
+			array("SVG1", true, "ISO-8859-1"),
 			array("MATHML1", false, "ISO-8859-1"),
 			array("MATHML2", false, "ISO-8859-1"),
 			array("Misnested_tags1", false, "ISO-8859-1"),
