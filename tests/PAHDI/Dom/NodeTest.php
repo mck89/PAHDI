@@ -466,4 +466,20 @@ class NodeTest extends PAHDITest
 		$doc = $this->parseHTML("<base href='$fakeUrl'>");
 		$this->assertTrue($doc->baseURI !== $fakeUrl);
 	}
+	
+	function testParentElement ()
+	{
+		$document = $this->getEmptyDocument();
+		$el1 = $document->createElement("div");
+		$el2 = $document->createElement("div");
+		$text = $document->createTextNode("test");
+		$el1->appendChild($el2);
+		$el2->appendChild($text);
+		$p1 = $el2->parentElement;
+		$p2 = $text->parentElement;
+		$this->assertTrue($p1 !== null && $p1->isSameNode($el1));
+		$this->assertTrue($p2 !== null && $p2->isSameNode($el2));
+		$this->assertEquals($p1->parentElement, null);
+		$this->assertEquals($document->parentElement, null);
+	}
 }

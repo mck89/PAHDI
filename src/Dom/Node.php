@@ -21,6 +21,7 @@
  * @property-read	Node	$lastChild			Last child node
  * @property-read	Node	$previousSibling	Previous sibling node
  * @property-read	Node	$nextSibling		Next sibling node
+ * @property-read	Element	$parentElement		Parent element
  * @property-read	string	$baseURI			Current base uri
  * @property		string	$textContent		Text content
  */
@@ -892,6 +893,15 @@ class Node extends DomObject
 				}
 				return $this->ownerDocument->baseURI;
 			break;
+			case "parentElement":
+				if (!$this->parentNode) {
+					return null;
+				} elseif ($this->parentNode->nodeType === self::ELEMENT_NODE) {
+					return $this->parentNode;
+				} else {
+					return $this->parentNode->parentElement;
+				}
+			break;
 		}
 		return null;
 	}
@@ -927,6 +937,7 @@ class Node extends DomObject
 			case "nextSibling":
 			case "previousSibling":
 			case "baseURI":
+			case "parentElement":
 				$msg = "Setting a property that has only a getter";
 				throw new DomException($msg);
 			break;
