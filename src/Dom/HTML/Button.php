@@ -18,7 +18,6 @@
  * @package     	PAHDI-DOM
  * @property		string		$name			Element's name
  * @property		string		$type			Element's type
- * @property		string		$accessKey		Element's access key
  * @property		string		$value			Element's value
  * @property		string		$formAction		Element's form action
  * @property		string		$formEnctype	Element's form enctype
@@ -40,7 +39,6 @@ class HTMLButtonElement extends HTMLElement
 	{
 		switch ($name) {
 			case "name":
-			case "accessKey":
 			case "value":
 				return $this->_getProperty($name);
 			break;
@@ -80,7 +78,6 @@ class HTMLButtonElement extends HTMLElement
 		switch ($name) {
 			case "name":
 			case "type":
-			case "accessKey":
 			case "value":
 				$this->_setProperty($name, $value);
 			break;

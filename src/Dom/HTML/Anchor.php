@@ -22,7 +22,6 @@
  * @property		string		$rel		Element's rel
  * @property		string		$rev		Element's rev
  * @property		string		$type		Element's type
- * @property		string		$accessKey	Element's access key
  * @property		string		$hreflang	Element's href lang
  * @property		string		$charset	Element's href charset
  * @property		string		$coords		Element's map coords
@@ -75,7 +74,6 @@ class HTMLAnchorElement extends HTMLElement
 			case "rel":
 			case "rev":
 			case "type":
-			case "accessKey":
 			case "hreflang":
 			case "charset":
 			case "coords":
@@ -136,7 +134,6 @@ class HTMLAnchorElement extends HTMLElement
 			case "rel":
 			case "rev":
 			case "type":
-			case "accessKey":
 			case "hreflang":
 			case "charset":
 			case "coords":

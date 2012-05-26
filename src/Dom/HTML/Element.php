@@ -18,6 +18,7 @@
  * @package    		PAHDI-DOM
  * @property		string			$title				Element's title
  * @property		string			$lang				Element's lang
+ * @property		string			$accessKey			Element's access key
  * @property		string			$dir				Element's text direction
  * @property		int				$tabIndex			Element's tabindex
  * @property		string			$contentEditable	Element's content editable state
@@ -243,6 +244,7 @@ class HTMLElement extends Element
 		switch ($name) {
 			case "title":
 			case "lang":
+			case "accessKey":
 				return $this->_getProperty($name);
 			break;
 			case "dir":
@@ -308,6 +310,7 @@ class HTMLElement extends Element
 		switch ($name) {
 			case "title":
 			case "lang":
+			case "accessKey":
 				$this->_setProperty($name, $value);
 			break;
 			case "contentEditable":

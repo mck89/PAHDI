@@ -17,7 +17,6 @@
  * @category    	PAHDI
  * @package     	PAHDI-DOM
  * @property		string			$name			Element's name
- * @property		string			$accessKey		Element's access key
  * @property		bool			$disabled		Element's disable state
  * @property		bool			$multiple		Element's multiple selection state
  * @property-read	bool			$type			Element's selection type
@@ -99,7 +98,6 @@ class HTMLSelectElement extends HTMLElement
 	{
 		switch ($name) {
 			case "name":
-			case "accessKey":
 				return $this->_getProperty($name);
 			break;
 			case "disabled":
@@ -153,7 +151,6 @@ class HTMLSelectElement extends HTMLElement
 	{
 		switch ($name) {
 			case "name":
-			case "accessKey":
 				$this->_setProperty($name, $value);
 			break;
 			case "disabled":

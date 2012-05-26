@@ -19,7 +19,6 @@
  * @property		string		$alt		Element's alt text
  * @property		string		$href		Element's href
  * @property		string		$target		Element's target
- * @property		string		$accessKey	Element's access key
  * @property		string		$coords		Element's map coords
  * @property		string		$shape		Element's map shape
  * @property		string		$ping		Element's ping urls
@@ -67,7 +66,6 @@ class HTMLAreaElement extends HTMLElement
 			break;
 			case "alt":
 			case "target":
-			case "accessKey":
 			case "coords":
 			case "shape":
 				return $this->_getProperty($name);
@@ -123,7 +121,6 @@ class HTMLAreaElement extends HTMLElement
 			case "alt":
 			case "href":
 			case "target":
-			case "accessKey":
 			case "coords":
 			case "shape":
 			case "ping":

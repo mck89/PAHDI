@@ -19,7 +19,6 @@
  * @property-read	int			$textLength		Element's text length
  * @property		string		$name			Element's name
  * @property		string		$type			Element's type
- * @property		string		$accessKey		Element's access key
  * @property		string		$value			Element's value
  * @property		string		$maxLength		Element's max length
  * @property		string		$placeholder	Element's placeholder
@@ -53,7 +52,6 @@ class HTMLTextAreaElement extends HTMLElement
 	{
 		switch ($name) {
 			case "name":
-			case "accessKey":
 			case "placeholder":
 			case "wrap":
 				return $this->_getProperty($name);
@@ -101,7 +99,6 @@ class HTMLTextAreaElement extends HTMLElement
 		switch ($name) {
 			case "name":
 			case "type":
-			case "accessKey":
 			case "placeholder":
 			case "wrap":
 				$this->_setProperty($name, $value);

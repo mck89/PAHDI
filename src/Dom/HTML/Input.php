@@ -24,7 +24,6 @@
  * @property		string		$align			Element's alignment
  * @property		string		$value			Element's value
  * @property		string		$useMap			Element's useMap
- * @property		string		$accessKey		Element's access key
  * @property		string		$accept			Element's accepted formats
  * @property		string		$placeholder	Element's placeholder
  * @property		string		$pattern		Element's validation pattern
@@ -61,7 +60,6 @@ class HTMLInputElement extends HTMLElement
 			case "align":
 			case "value":
 			case "useMap":
-			case "accessKey":
 			case "accept":
 			case "placeholder":
 			case "pattern":
@@ -128,7 +126,6 @@ class HTMLInputElement extends HTMLElement
 			case "align":
 			case "value":
 			case "useMap":
-			case "accessKey":
 			case "placeholder":
 			case "pattern":
 				$this->_setProperty($name, $value);

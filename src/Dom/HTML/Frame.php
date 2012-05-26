@@ -19,7 +19,6 @@
  * @property		string			$name				Element's name
  * @property		string			$src				Element's source
  * @property		string			$longDesc			Element's longDesc
- * @property		string			$accessKey			Element's access key
  * @property		bool			$noResize			Element's no resize state
  * @property		string			$frameBorder		Element's frame border
  * @property		string			$marginHeight		Element's margin height
@@ -62,7 +61,6 @@ class HTMLFrameElement extends HTMLElement
 				return $this->_getProperty($name, "path");
 			break;
 			case "name":
-			case "accessKey":
 			case "frameBorder":
 			case "marginHeight":
 			case "marginWidth":
@@ -122,7 +120,6 @@ class HTMLFrameElement extends HTMLElement
 			case "src":
 			case "name":
 			case "longDesc":
-			case "accessKey":
 			case "frameBorder":
 			case "marginHeight":
 			case "marginWidth":

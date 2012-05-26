@@ -17,7 +17,6 @@
  * @category    	PAHDI
  * @package     	PAHDI-DOM
  * @property		string		$htmlFor	Element's "for"
- * @property		string		$accessKey	Element's access key
  */
 class HTMLLabelElement extends HTMLElement
 {
@@ -33,9 +32,6 @@ class HTMLLabelElement extends HTMLElement
 		switch ($name) {
 			case "htmlFor":
 				return $this->_getProperty("for");
-			break;
-			case "accessKey":
-				return $this->_getProperty($name);
 			break;
 			default:
 				return parent::__get($name);
@@ -57,9 +53,6 @@ class HTMLLabelElement extends HTMLElement
 			case "htmlFor":
 				$this->_setProperty("for");
 			break;
-			case "accessKey":
-				$this->_setProperty($name, $value);
-			break;	
 			default:
 				parent::__set($name, $value);
 			break;

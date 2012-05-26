@@ -17,7 +17,6 @@
  * @category    	PAHDI
  * @package     	PAHDI-DOM
  * @property		string		$align		Element's alignment
- * @property		string		$accessKey	Element's access key
  */
 class HTMLLegendElement extends HTMLElement
 {
@@ -32,7 +31,6 @@ class HTMLLegendElement extends HTMLElement
 	{
 		switch ($name) {
 			case "align":
-			case "accessKey":
 				return $this->_getProperty($name);
 			break;
 			default:
@@ -53,7 +51,6 @@ class HTMLLegendElement extends HTMLElement
 	{
 		switch ($name) {
 			case "align":
-			case "accessKey":
 				$this->_setProperty($name, $value);
 			break;			
 			default:
