@@ -255,25 +255,6 @@ class Element extends Node
 	}
 	
 	/**
-	 * Cheks if the current element contains the given
-	 * one. For non elements nodes it always returns
-	 * false
-	 *
-	 * @param	Node	$el		Element to test
-	 * @return	bool	True if the current element
-	 *					contains the given one otherwise
-	 *					false
-	 */
-	function contains (Node $el)
-	{
-		if ($el->nodeType !== self::ELEMENT_NODE) {
-			return false;
-		}
-		$pos = $this->compareDocumentPosition($el);
-		return $pos && ($pos & 16) ? true : false;
-	}
-	
-	/**
 	 * Get the list of descendant elements with the
 	 * given tag name
 	 *

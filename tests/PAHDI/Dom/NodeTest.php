@@ -482,4 +482,23 @@ class NodeTest extends PAHDITest
 		$this->assertEquals($p1->parentElement, null);
 		$this->assertEquals($document->parentElement, null);
 	}
+
+	function testContains ()
+	{
+		$document = $this->getEmptyDocument();
+		$el1 = $document->createElement("div");
+		$el2 = $document->createElement("div");
+		$el3 = $document->createElement("div");
+		$text = $document->createTextNode("test");
+		$document->appendChild($el1);
+		$el1->appendChild($el2);
+		$el2->appendChild($el3);
+		$el3->appendChild($text);
+		$this->assertTrue($el1->contains($el2));
+		$this->assertTrue($el2->contains($el3));
+		$this->assertTrue($el3->contains($text));
+		$this->assertTrue($document->contains($text));
+		$this->assertFalse($el2->contains($el1));
+		$this->assertFalse($el3->contains($el2));
+	}
 }

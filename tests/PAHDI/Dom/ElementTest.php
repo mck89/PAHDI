@@ -428,21 +428,6 @@ class ElementTest extends PAHDITest
 		$this->assertEquals($el->textContent, "barfoo");
 	}
 	
-	function testContains ()
-	{
-		$document = $this->getEmptyDocument();
-		$el1 = $document->createElement("div");
-		$el2 = $document->createElement("div");
-		$el3 = $document->createElement("div");
-		$document->appendChild($el1);
-		$el1->appendChild($el2);
-		$el2->appendChild($el3);
-		$this->assertTrue($el1->contains($el2));
-		$this->assertTrue($el2->contains($el3));
-		$this->assertFalse($el2->contains($el1));
-		$this->assertFalse($el3->contains($el2));
-	}
-	
 	function testAttributeAbsolutePath ()
 	{
 		$fakeurl = "http://www.fakeurltest.com";

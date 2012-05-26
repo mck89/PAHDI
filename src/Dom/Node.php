@@ -824,6 +824,21 @@ class Node extends DomObject
 	}
 	
 	/**
+	 * Cheks if the current node contains the given
+	 * one
+	 *
+	 * @param	Node	$node		Node to test
+	 * @return	bool	True if the current node
+	 *					contains the given one otherwise
+	 *					false
+	 */
+	function contains (Node $node)
+	{
+		$pos = $this->compareDocumentPosition($node);
+		return $pos && ($pos & 16) ? true : false;
+	}
+	
+	/**
 	 * Provides a way to access some properties
 	 *
 	 * @param	string	$name	Property name
