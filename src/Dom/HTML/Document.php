@@ -25,8 +25,10 @@
  * @property-read	HTMLCollection	$forms				Forms collection
  * @property-read	HTMLCollection	$images				Images collection
  * @property-read	HTMLCollection	$plugins			Embed collection
- * @property-read	HTMLCollection	$plugins			Embed collection
+ * @property-read	HTMLCollection	$anchors			Anchors collection
+ * @property-read	HTMLCollection	$links				Links collection
  * @property-read	StyleSheetList	$styleSheets		Style sheets list
+ * @property-read	string			$URL				Document URL
  * @property		string			$title				Document title
  * @property		string			$fgColor			Foreground color
  * @property		string			$bgColor			Background color
@@ -460,11 +462,7 @@ class HTMLDocument extends Node
 			case "anchors":
 			case "links":
 				$search = new PAHDISearch($this);
-				if ($name === "anchors") {
-					$attr = "name";
-				} else {
-					$attr = "href";
-				}
+				$attr = $name === "anchors" ? "name" : "href";
 				$fn = function ($node) use ($attr) {
 					return  $node->tagName === "a" &&
 							$node->hasAttribute($attr);
