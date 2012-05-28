@@ -850,21 +850,22 @@ class ParserHTMLBuilder extends ParserHTMLTokenizer
 						$this->_mode = self::IN_FRAMESET_MODE;
 					}
 					//A start tag whose tag name is one of: "address", "article",
-					//"aside", "blockquote", "center", "details", "dir",
+					//"aside", "blockquote", "center", "details", "dialog", "dir",
 					//"div", "dl", "fieldset", "figcaption", "figure",
 					//"footer", "header", "hgroup", "menu", "nav", "ol", "p",
 					//"section", "summary", "ul"
 					elseif ($tagname === "address" || $tagname === "article" ||
 							$tagname === "aside" || $tagname === "blockquote" ||
 							$tagname === "center" || $tagname === "details" ||
-							$tagname === "dir" || $tagname === "div" ||
-							$tagname === "dl" || $tagname === "fieldset" || 
-							$tagname === "figcaption" || $tagname === "figure" ||
-							$tagname === "footer" || $tagname === "header" ||
-							$tagname === "hgroup" || $tagname === "menu" ||
-							$tagname === "nav" || $tagname === "ol" ||
-							$tagname === "p" || $tagname === "section" ||
-							$tagname === "summary" || $tagname === "ul") {
+							$tagname === "dialog" || $tagname === "dir" ||
+							$tagname === "div" || $tagname === "dl" ||
+							$tagname === "fieldset" || $tagname === "figcaption" ||
+							$tagname === "figure" || $tagname === "footer" ||
+							$tagname === "header" || $tagname === "hgroup" ||
+							$tagname === "menu" || $tagname === "nav" ||
+							$tagname === "ol" || $tagname === "p" ||
+							$tagname === "section" || $tagname === "summary" ||
+							$tagname === "ul") {
 						//If the stack of open elements has a p element in
 						//button scope, then act as if an end tag with the tag
 						//name "p" had been seen.
@@ -1050,7 +1051,6 @@ class ParserHTMLBuilder extends ParserHTMLTokenizer
 						//end tag with the tag name "button" had been seen,
 						//then reprocess the token.
 						if ($this->_hasElementInScope("button")) {
-							//buttons");
 							$this->_emitToken(
 								self::END_TAG,
 								array("tagname" => "p")
@@ -1512,21 +1512,22 @@ class ParserHTMLBuilder extends ParserHTMLTokenizer
 					}
 					//An end tag whose tag name is one of: "address", "article",
 					//"aside", "blockquote", "button", "center", "details",
-					//"dir", "div", "dl", "fieldset", "figcaption", "figure",
-					//"footer", "header", "hgroup", "listing", "menu", "nav",
-					//"ol", "pre", "section", "summary", "ul"
+					//"dialog", "dir", "div", "dl", "fieldset", "figcaption",
+					//"figure", "footer", "header", "hgroup", "listing", "menu",
+					//"nav", "ol", "pre", "section", "summary", "ul"
 					elseif ($tagname === "address" || $tagname === "article" ||
 							$tagname === "aside" || $tagname === "blockquote" ||
 							$tagname === "button" || $tagname === "center" ||
-							$tagname === "details" || $tagname === "dir" ||
-							$tagname === "div" || $tagname === "dl" ||
-							$tagname === "fieldset" || $tagname === "figcaption" ||
-							$tagname === "figure" || $tagname === "footer" ||
-							$tagname === "header" || $tagname === "hgroup" ||
-							$tagname === "listing" || $tagname === "menu" ||
-							$tagname === "nav" || $tagname === "ol" ||
-							$tagname === "pre" || $tagname === "section" ||
-							$tagname === "summary" || $tagname === "ul") {
+							$tagname === "details" || $tagname === "dialog" ||
+							$tagname === "dir" || $tagname === "div" ||
+							$tagname === "dl" || $tagname === "fieldset" ||
+							$tagname === "figcaption" || $tagname === "figure" ||
+							$tagname === "footer" || $tagname === "header" ||
+							$tagname === "hgroup" || $tagname === "listing" ||
+							$tagname === "menu" || $tagname === "nav" ||
+							$tagname === "ol" || $tagname === "pre" ||
+							$tagname === "section" || $tagname === "summary" ||
+							$tagname === "ul") {
 						//If the stack of open elements does not have an
 						//element in scope with the same tag name as that of the
 						//token, then this is a parse error; ignore the token.
@@ -2006,8 +2007,15 @@ class ParserHTMLBuilder extends ParserHTMLTokenizer
 
 			//The "in table" insertion mode
 			case self::IN_TABLE_MODE:
-				//A character token
-				if ($token === self::CHAR) {
+				//A character token, if the current node is table, tbody,
+				//tfoot, thead, or tr element
+				if ($token === self::CHAR && (
+					$this->current->tagName === "table" ||
+					$this->current->tagName === "tbody" ||
+					$this->current->tagName === "tfoot" ||
+					$this->current->tagName === "thead" ||
+					$this->current->tagName === "tr"
+					)) {
 					//Let the pending table character tokens be an empty list
 					//of tokens.
 					$this->_pendingTableCharacterTokens = array();
@@ -3977,10 +3985,10 @@ class ParserHTMLBuilder extends ParserHTMLTokenizer
 						"input", "isindex", "li", "link", "listing", "marquee",
 						"menu", "meta", "nav", "noembed", "noframes", "noscript",
 						"object", "ol", "p", "param", "plaintext", "pre",
-						"script","section", "select","style", "summary",
+						"script","section", "select", "source", "style", "summary",
 						"table", "tbody", "td", "textarea", "tfoot", "th",
 						"thead", "title", "tr", "ul", "wbr", "xmp"),
-				self::MATHML_NAMESPACE => array(	"mi", "mo", "mn", "ms", "mtext",
+				self::MATHML_NAMESPACE => array("mi", "mo", "mn", "ms", "mtext",
 												"annotation-xml"),
 				self::SVG_NAMESPACE => array("foreignObject", "desc", "title")
 			);
