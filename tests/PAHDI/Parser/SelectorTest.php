@@ -152,7 +152,9 @@ class ParserSelectorTest extends PAHDITest
 			array("div:nth-of-type(2n+2)", 10, 2, array(2, 4, 6, 8, 10, 12, 14, 16, 18, 20)),
 			
 			array("div:nth-last-of-type(2n+1)", 10, 2, array(2, 4, 6, 8, 10, 12, 14, 16, 18, 20)),
-			array("div:nth-last-of-type(2n+2)", 10, 2, array(1, 3, 5, 7, 9, 11, 13, 15, 17, 19))
+			array("div:nth-last-of-type(2n+2)", 10, 2, array(1, 3, 5, 7, 9, 11, 13, 15, 17, 19)),
+			
+			array("div :any(li, dt) a", 57)
 		);
 	}
 	

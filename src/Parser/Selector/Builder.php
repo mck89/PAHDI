@@ -332,6 +332,20 @@ class ParserSelectorBuilder extends ParserSelectorTokenizer
 								}
 								$afterCond .= $nt;
 							break;
+							case "any":
+								if (!isset($rule["args"]) || !$rule["args"]) {
+									return false;
+								}
+								$tags = preg_split("#\s*,\s*#", $rule["args"]);
+								if (!count($tags)) {
+									return false;
+								}
+								foreach ($tags as $k => $tag) {
+									$tags[$k] = $this->_quote($tag);
+								}
+								$tags = implode(",", $tags);
+								$cond[] = '!in_array($node->tagName, array(' . $tags . '))';
+							break;
 							case "not":
 								if (!isset($rule["args"]) || !$rule["args"]) {
 									return false;
@@ -468,7 +482,7 @@ class ParserSelectorBuilder extends ParserSelectorTokenizer
 				$notation === "+1n") {
 			return "";
 		}
-		//Fix the number before "n" so that if "n" and "+n" results in 1
+		//Fix the number before "n" so that "n" and "+n" results in 1
 		//and "-n" results in -1
 		$an = $match[1];
 		if ($an === "" || $an === "+" || $an === "-") {
