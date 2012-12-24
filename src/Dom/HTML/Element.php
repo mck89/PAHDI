@@ -35,6 +35,7 @@
  * @property	string			$itemId					Element's itemId
  * @property	mixed			$itemValue				Element's itemValue
  * @property	HTMLPropertiesCollection $properties	Microdata properties
+ * @property	HTMLMenuElement	$contextMenu			Associated context menu or null if not present
  * @property	HTMLFormElement	$form					Form element that contains the element or
  *														null if not present. This property is
  *														available only on for form-associated elements
@@ -298,6 +299,12 @@ class HTMLElement extends Element
 			case "innerText":
 				return $this->textContent;
 			break;
+			case "contextMenu":
+				if ($ctx = $this->getAttribute("contextmenu")) {
+					return $this->ownerDocument->querySelector("menu#$ctx");
+				}
+				return null;
+			break;
 			case "itemType":
 			case "itemProp":
 			case "itemRef":
@@ -438,6 +445,7 @@ class HTMLElement extends Element
 			break;
 			case "isContentEditable":
 			case "properties":
+			case "contextMenu":
 				return;
 			break;
 			case "dir":

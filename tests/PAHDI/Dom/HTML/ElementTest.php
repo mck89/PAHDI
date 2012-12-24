@@ -174,4 +174,12 @@ class HTMLElementTest extends PAHDITest
 		$this->assertEquals($names[1], "title");
 		$this->assertEquals($names[2], "license");
 	}
+	
+	function testContextMenu ()
+	{
+		$html = '<div contextmenu="mymenu"></div><menu type="context" id="mymenu"></menu>';
+		$document = $this->parseHTML($html);
+		$divs = $document->getElementsByTagName("div");
+		$this->assertEquals($divs[0]->contextMenu->id, "mymenu");
+	}
 }
