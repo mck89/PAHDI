@@ -17,7 +17,7 @@
  * @category    	PAHDI
  * @package     	PAHDI-DOM
  */
-class TokenList extends DomObject implements ArrayAccess, IteratorAggregate
+class TokenList extends StringList implements ArrayAccess, IteratorAggregate
 {
 	/**
 	 * Update function
@@ -27,15 +27,6 @@ class TokenList extends DomObject implements ArrayAccess, IteratorAggregate
 	 * @ignore
 	 */
 	protected $_updateFn;
-	
-	/**
-	 * Tokens
-	 *
-	 * @var		array
-	 * @access	protected
-	 * @ignore
-	 */
-	protected $_tokens = array();
 	
 	/**
 	 * Class constructor.
@@ -50,35 +41,6 @@ class TokenList extends DomObject implements ArrayAccess, IteratorAggregate
 		if ($tokenString) {
 			$this->_tokens = preg_split("#\s+#", $tokenString);
 		}
-	}
-	
-	/**
-	 * Gets a token by index
-	 *
-	 * @param	int		$index	Index
-	 * @return	mixed	Token or null if not found
-	 */
-	function item ($index)
-	{
-		return  isset($this->_tokens[$index]) ? 
-				$this->_tokens[$index] :
-				null;
-	}
-	
-	/**
-	 * Checks if the given token is present in the token
-	 * list
-	 *
-	 * @param	string	$token	Token to check
-	 * @return	bool	True if the token is present otherwise
-	 *					false
-	 */
-	function contains ($token)
-	{
-		if (preg_match("#\s#", $token)) {
-			throw new DomException("String contains an invalid character");
-		}
-		return in_array($token, $this->_tokens);
 	}
 	
 	/**
@@ -138,31 +100,6 @@ class TokenList extends DomObject implements ArrayAccess, IteratorAggregate
 	}
 	
 	/**
-	 * Returns the value of the length property
-	 *
-	 * @param	string	$name	Property name
-	 * @return	mixed	Property value
-	 * @ignore
-	 */
-	function __get ($name)
-	{
-		if ($name === "length") {
-			return count($this->_tokens);
-		}
-		return null;
-	}
-	
-	/**
-	 * Returns the string representation of the token list
-	 *
-	 * @return	string	String representation of the token list
-	 */
-	function __toString ()
-	{
-		return implode(" ", $this->_tokens);
-	}
-	
-	/**
 	 * Checks if the given offset exists (used to make the class
 	 * compatible with the ArrayAccess interface).
 	 *
@@ -200,19 +137,6 @@ class TokenList extends DomObject implements ArrayAccess, IteratorAggregate
 	}
 	
 	/**
-	 * Returns the item at the given offset (used to make the
-	 * class compatible with the ArrayAccess interface).
-	 *
-	 * @param	int		$offset		Offset
-	 * @return	mixed	Item or false if it's not found
-	 * @ignore
-	 */
-	function offsetGet ($offset)
-	{
-		return $this->_tokens[$offset];
-	}
-	
-	/**
 	 * Deletes the item at the given offset (used to make the
 	 * class compatible with the ArrayAccess interface).
 	 *
@@ -229,18 +153,6 @@ class TokenList extends DomObject implements ArrayAccess, IteratorAggregate
 			$this->_triggerUpdate();
 		}
 	}
-	
-	/**
-	 * Returns the object iterator (used to make the class
-	 * compatible with the IteratorAggregate interface).
-	 *
-	 * @return	object	Iterator
-	 * @ignore
-	 */
-	function getIterator ()
-	{
-		return new ArrayIterator($this->_tokens);
-    }
 	
 	/**
 	 * Apply changes

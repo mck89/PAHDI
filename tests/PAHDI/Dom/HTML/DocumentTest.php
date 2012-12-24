@@ -272,6 +272,17 @@ class DocumentTest extends PAHDITest
 		$this->assertEquals($list->length, 267);
 	}
 	
+	function testGetItems ()
+	{
+		$html = "<div itemscope itemtype='test'><a itemtype='b'></a></div>";
+		$html .= "<div itemscope itemtype='test2'></div>";
+		$document = $this->parseHTML($html);
+		$list = $document->getItems();
+		$this->assertEquals($list->length, 2);
+		$list = $document->getItems("test");
+		$this->assertEquals($list->length, 1);
+	}
+	
 	function testGetElementsByName ()
 	{
 		$document = $this->parseHTML("<input name='s'><input name='s'>");

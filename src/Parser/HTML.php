@@ -458,6 +458,21 @@ class ParserHTML extends ParserHTMLBuilder
 	static $MATHMLAttributes = array("definitionurl" => "definitionURL");
 	
 	/**
+	 * Association of tag names and attributes that the
+	 * itemValue property must reflect
+	 *
+	 * @static
+	 * @var		array
+	 */	
+	static $itemValueMap = array(
+		"meta"=>"content", "audio"=>"src", "embed"=>"src", 
+		"iframe"=>"src", "img"=>"src", "source"=>"src", 
+		"track"=>"src", "video"=>"src", "a"=>"href", 
+		"area"=>"href", "link"=>"href", "object"=>"data",
+		"data"=>"value", "time"=>"datetime"
+	);
+	
+	/**
 	 * Current document
 	 *
 	 * @var		HTMLDocument

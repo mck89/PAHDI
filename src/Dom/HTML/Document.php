@@ -387,6 +387,28 @@ class HTMLDocument extends Node
 	}
 	
 	/**
+	 * Get the list of descendant elements with the
+	 * given name
+	 *
+	 * @param	string			$name	Name to search
+	 * @return	HTMLCollection	Nodes collection
+	 */
+	function getItems ($type = null)
+	{
+		$search = new PAHDISearch($this);
+		if ($type === null) {
+			$fn = function ($node) {
+				return $node->itemScope;
+			};
+		} else {
+			$fn = function ($node) use ($type) {
+				return $node->itemScope && $node->itemType->contains($type);
+			};
+		}
+		return $search->find($fn)->toHTMLCollection();
+	}
+	
+	/**
 	 * Find elements that match the given selector
 	 *
 	 * @param	string		$selector	Selector

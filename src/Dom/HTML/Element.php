@@ -28,6 +28,12 @@
  * @property		string			$outerHTML			Element's outer HTML
  * @property		string			$innerText			Element's inner text
  * @property		string			$outerText			Element's outer text
+ * @property		bool			$itemScope			Element's itemscope state
+ * @property		TokenList		$itemRef			Element's itemref tokens list
+ * @property		TokenList		$itemProp			Element's itemprop tokens list
+ * @property		TokenList		$itemType			Element's itemtype tokens list
+ * @property		string			$itemId				Element's itemId
+ * @property		mixed			$itemValue			Element's itemValue
  * @property		HTMLFormElement	$form				Form element that contains the element or
  *														null if not present. This property is
  *														available only on for form-associated elements
@@ -267,6 +273,7 @@ class HTMLElement extends Element
 			break;
 			case "draggable":
 			case "contentEditable":
+			case "itemScope":
 				return $this->_getProperty($name, "bool");
 			break;
 			case "form":
@@ -290,6 +297,109 @@ class HTMLElement extends Element
 			case "innerText":
 				return $this->textContent;
 			break;
+			case "itemType":
+			case "itemProp":
+			case "itemRef":
+				$el = $this;
+				$fn = function ($value) use ($el, $name) {
+						$el->setAttribute($name, $value);
+					};
+				return new TokenList($this->_getProperty($name), $fn);
+			break;
+			case "itemValue":
+				if (!$this->getAttribute("itemprop")) {
+					return null;
+				} elseif ($this->itemScope) {
+					return $this;
+				} elseif ($this->tagName === "time" && $this->getAttribute("datetime")) {
+					return $this->_getProperty("datetime");
+				} elseif (isset(ParserHTML::$itemValueMap[$this->tagName])) {
+					return $this->_getProperty(ParserHTML::$itemValueMap[$this->tagName]);
+				}
+				return $this->textContent;
+			break;
+			case "itemId":
+				return $this->_getProperty($name, "path");
+			break;
+			case "properties":
+				//Let results, memory, and pending be empty lists of elements.
+				$results = $memory = $pending = array();
+				
+				//Add the element root to memory.
+				$memory[] = $this;
+				$memoryLen = 1;
+				
+				//Add the child elements of root, if any, to pending.
+				$childs = $this->children;
+				$len = $childs->length;
+				for ($i = 0; $i < $len; $i++) {
+					$pending[] = $childs[$i];
+				}
+				
+				//If root has an itemref attribute, split the value of that itemref
+				//attribute on spaces. For each resulting token ID, if there is an
+				//element in the home subtree of root with the ID ID, then add the
+				//first such element to pending.
+				if ($this->itemRef->length > 0) {
+					foreach ($this->itemRef as $ref) {
+						$el = $this->ownerDocument->getElementById($ref);
+						if ($el) {
+							$pending[] = $el;
+						}
+					}
+				}
+				
+				//Loop: If pending is empty, jump to the step labeled end of loop.
+				while (count($pending) > 0) {
+					//Remove an element from pending and let current be that element.
+					$current = array_pop($pending);
+					
+					//If current is already in memory, there is a microdata error; return
+					//to the step labeled loop.
+					if ($memoryLen) {
+						$inMemory = false;
+						for ($i = 0; $i < $memoryLen; $i++) {
+							if ($memory[$i]->isSameNode($current)) {
+								$inMemory = true;
+								break;
+							}
+						}
+						if ($inMemory) {
+							continue;
+						}
+					}
+					
+					//Add current to memory.
+					$memory[] = $current;
+					$memoryLen++;
+					
+					//If current does not have an itemscope attribute, then: add all the
+					//child elements of current to pending.
+					if (!$current->itemScope) {
+						$childs = $current->children;
+						$len = $childs->length;
+						for ($i = 0; $i < $len; $i++) {
+							$pending[] = $childs[$i];
+						}
+					}
+					
+					//If current has an itemprop attribute specified and has one or more
+					//property names, then add current to results.
+					if ($current->itemProp->length > 0) {
+						$results[] = $current;
+					}
+					
+					//Return to the step labeled loop.
+				}
+
+				//End of loop: Sort results in tree order.
+				$search = new PAHDISearch($results);
+				$search->sort();
+				$list = $search->toHTMLPropertiesCollection();
+				
+				//Return results.
+				return $list;
+			break;
 			default:
 				return parent::__get($name);
 			break;
@@ -311,6 +421,7 @@ class HTMLElement extends Element
 			case "title":
 			case "lang":
 			case "accessKey":
+			case "itemId":
 				$this->_setProperty($name, $value);
 			break;
 			case "contentEditable":
@@ -325,6 +436,7 @@ class HTMLElement extends Element
 				$this->_setProperty($name, $value, "bool");
 			break;
 			case "isContentEditable":
+			case "properties":
 				return;
 			break;
 			case "dir":
@@ -341,6 +453,7 @@ class HTMLElement extends Element
 				$this->_setProperty($name, $value, "int", - 1);
 			break;
 			case "draggable":
+			case "itemScope":
 				$this->_setProperty($name, $value, "bool");
 			break;
 			case "innerHTML":
@@ -374,6 +487,22 @@ class HTMLElement extends Element
 				if ($this->parentNode) {
 					$this->parentNode->insertBefore($text, $this);
 					$this->parentNode->removeChild($this);
+				}
+			break;
+			case "itemType":
+			case "itemProp":
+			case "itemRef":
+				throw new DomException("Setting a property that has only a getter");
+			break;
+			case "itemValue":
+				if (!$this->getAttribute("itemprop") || $this->itemScope) {
+					$err = "A parameter or an operation is not " .
+						   "supported by the underlying object";
+					throw new DomException($err);
+				} elseif (isset(ParserHTML::$itemValueMap[$this->tagName])) {
+					$this->_setProperty(ParserHTML::$itemValueMap[$this->tagName], $value);
+				} else {
+					$this->textContent = $value;
 				}
 			break;
 			default:

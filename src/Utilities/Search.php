@@ -458,6 +458,18 @@ class PAHDISearch implements ArrayAccess, IteratorAggregate
 	}
 	
 	/**
+	 * Returns the current nodes as a HTMLPropertiesCollection
+	 *
+	 * @return	HTMLPropertiesCollection	Resulting list
+	 */
+	function toHTMLPropertiesCollection ()
+	{
+		$c = new HTMLPropertiesCollection;
+		$c->_merge($this->_nodes);
+		return $c;
+	}
+	
+	/**
 	 * Returns the index of the given node in its parent
 	 * node child nodes collection
 	 *
