@@ -17,6 +17,7 @@
  *
  * @category    	PAHDI
  * @package     	PAHDI-DOM
+ * @property		StringList		$names		Names list as StringList
  */
 class HTMLPropertiesCollection extends HTMLCollection
 {

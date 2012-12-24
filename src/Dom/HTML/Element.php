@@ -14,27 +14,28 @@
 /**
  * DOM HTML element class
  *
- * @category    	PAHDI
- * @package    		PAHDI-DOM
- * @property		string			$title				Element's title
- * @property		string			$lang				Element's lang
- * @property		string			$accessKey			Element's access key
- * @property		string			$dir				Element's text direction
- * @property		int				$tabIndex			Element's tabindex
- * @property		string			$contentEditable	Element's content editable state
- * @property		bool			$isContentEditable	Element's contentEditable boolean state
- * @property		string			$draggable			Element's draggable state
- * @property		string			$innerHTML			Element's inner HTML
- * @property		string			$outerHTML			Element's outer HTML
- * @property		string			$innerText			Element's inner text
- * @property		string			$outerText			Element's outer text
- * @property		bool			$itemScope			Element's itemscope state
- * @property		TokenList		$itemRef			Element's itemref tokens list
- * @property		TokenList		$itemProp			Element's itemprop tokens list
- * @property		TokenList		$itemType			Element's itemtype tokens list
- * @property		string			$itemId				Element's itemId
- * @property		mixed			$itemValue			Element's itemValue
- * @property		HTMLFormElement	$form				Form element that contains the element or
+ * @category    PAHDI
+ * @package    	PAHDI-DOM
+ * @property	string			$title					Element's title
+ * @property	string			$lang					Element's lang
+ * @property	string			$accessKey				Element's access key
+ * @property	string			$dir					Element's text direction
+ * @property	int				$tabIndex				Element's tabindex
+ * @property	string			$contentEditable		Element's content editable state
+ * @property	bool			$isContentEditable		Element's contentEditable boolean state
+ * @property	string			$draggable				Element's draggable state
+ * @property	string			$innerHTML				Element's inner HTML
+ * @property	string			$outerHTML				Element's outer HTML
+ * @property	string			$innerText				Element's inner text
+ * @property	string			$outerText				Element's outer text
+ * @property	bool			$itemScope				Element's itemscope state
+ * @property	TokenList		$itemRef				Element's itemref tokens list
+ * @property	TokenList		$itemProp				Element's itemprop tokens list
+ * @property	TokenList		$itemType				Element's itemtype tokens list
+ * @property	string			$itemId					Element's itemId
+ * @property	mixed			$itemValue				Element's itemValue
+ * @property	HTMLPropertiesCollection $properties	Microdata properties
+ * @property	HTMLFormElement	$form					Form element that contains the element or
  *														null if not present. This property is
  *														available only on for form-associated elements
  */
