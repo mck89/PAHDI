@@ -8,7 +8,7 @@
  * @package     PAHDI-DOM
  * @author      Marco Marchiò
  * @license     http://opensource.org/licenses/bsd-license.php The BSD License
- * @copyright	Copyright (c) 2011, Marco Marchiò
+ * @copyright	Copyright (c) 2013, Marco Marchiò
  */
  
 /**
@@ -97,7 +97,7 @@ class Text extends CharacterData
 	 * @param	Node	$child	Node to append
 	 * @return	Node	Appended node
 	 */
-	function appendChild ($child)
+	function appendChild (Node $child)
 	{
 		throw new DomException("Node cannot be inserted at the specified point in the hierarchy");
 	}

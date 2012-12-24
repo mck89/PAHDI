@@ -1,7 +1,7 @@
 <?php
 class PAHDITest extends PHPUnit_Framework_TestCase
 {
-	function parseHTML ($HTML, $options=array())
+	static function parseHTML ($HTML, $options=array())
 	{
 		return PAHDI::parseString($HTML, $options);
 	}
@@ -71,7 +71,7 @@ class PAHDITest extends PHPUnit_Framework_TestCase
 		return str_replace(array("\t", "\n", " "), array("\\t", "\\n", "\\s"), $text);
 	}
 	
-	function getEmptyDocument ()
+	static function getEmptyDocument ()
 	{
 		$doc = new HTMLDocument();
 		$doc->characterSet = "ISO-8859-1";
@@ -95,8 +95,11 @@ class PAHDITest extends PHPUnit_Framework_TestCase
 	
 	static function convertSize($size)
 	{
-		$unit=array('b','Kb','Mb','Gb','Tb','Pb');
+		if ($size <= 0) {
+			return "0 b";
+		}
+		$units = array('b','Kb','Mb','Gb','Tb','Pb');
 		$i = floor(log($size, 1024));
-		return @round($size / pow(1024, $i), 2) . ' ' . $unit[$i];
+		return @round($size / pow(1024, $i), 2) . ' ' . $units[$i];
 	}
 }

@@ -8,7 +8,7 @@
  * @package     PAHDI-DOM
  * @author      Marco Marchiò
  * @license     http://opensource.org/licenses/bsd-license.php The BSD License
- * @copyright	Copyright (c) 2011, Marco Marchiò
+ * @copyright	Copyright (c) 2013, Marco Marchiò
  */
  
 /**
