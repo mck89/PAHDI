@@ -25,6 +25,7 @@
  * @property-read	HTMLCollection	$forms				Forms collection
  * @property-read	HTMLCollection	$images				Images collection
  * @property-read	HTMLCollection	$plugins			Embed collection
+ * @property-read	HTMLCollection	$scripts			Scripts collection
  * @property-read	HTMLCollection	$anchors			Anchors collection
  * @property-read	HTMLCollection	$links				Links collection
  * @property-read	StyleSheetList	$styleSheets		Style sheets list
@@ -472,12 +473,14 @@ class HTMLDocument extends Node
 			case "forms":
 			case "images":
 			case "plugins":
+			case "scripts":
 				$tags = array(
 					"applets" => "applet",
 					"embeds" => "embed",
 					"plugins" => "embed",
 					"forms" => "form",
-					"images" => "img"
+					"images" => "img",
+					"scripts" => "script"
 				);
 				return $this->getElementsByTagName($tags[$name]);
 			break;
@@ -559,6 +562,7 @@ class HTMLDocument extends Node
 			case "forms":
 			case "images":
 			case "plugins":
+			case "scripts":
 			case "anchors":
 			case "links":
 			case "URL":

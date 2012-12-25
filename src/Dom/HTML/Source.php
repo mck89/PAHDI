@@ -18,6 +18,7 @@
  * @package     	PAHDI-DOM
  * @property		string		$src		Element's source
  * @property		string		$type		Element's type
+ * @property		string		$media		Element's media
  */
 class HTMLSourceElement extends HTMLElement
 {
@@ -35,6 +36,7 @@ class HTMLSourceElement extends HTMLElement
 				return $this->_getProperty($name, "path");
 			break;
 			case "type":
+			case "media":
 				return $this->_getProperty($name);
 			break;
 			default:
@@ -56,6 +58,7 @@ class HTMLSourceElement extends HTMLElement
 		switch ($name) {
 			case "src":
 			case "type":
+			case "media":
 				$this->_setProperty($name, $value);
 			break;			
 			default:

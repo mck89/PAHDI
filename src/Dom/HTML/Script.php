@@ -16,14 +16,15 @@
  *
  * @category    	PAHDI
  * @package     	PAHDI-DOM
- * @property		string		$src		Element's source
- * @property		string		$type		Element's type
- * @property		string		$htmlFor	Element's "for"
- * @property		bool		$defer		Element's defer state
- * @property		bool		$async		Element's async state
- * @property		string		$charset	Element's source charset
- * @property		string		$event		Element's event
- * @property		string		$text		Alias of textContent
+ * @property		string		$src			Element's source
+ * @property		string		$type			Element's type
+ * @property		string		$htmlFor		Element's "for"
+ * @property		bool		$defer			Element's defer state
+ * @property		bool		$async			Element's async state
+ * @property		bool		$crossOrigin	Element's crossOrigin state
+ * @property		string		$charset		Element's source charset
+ * @property		string		$event			Element's event
+ * @property		string		$text			Alias of textContent
  */
 class HTMLScriptElement extends HTMLElement
 {
@@ -50,6 +51,7 @@ class HTMLScriptElement extends HTMLElement
 			break;
 			case "defer":
 			case "async":
+			case "crossOrigin":
 				return $this->_getProperty($name, "bool");
 			break;
 			case "text":
@@ -82,6 +84,7 @@ class HTMLScriptElement extends HTMLElement
 			break;
 			case "defer":
 			case "async":
+			case "crossOrigin":
 				$this->_setProperty($name, $value, "bool");
 			break;
 			case "text":

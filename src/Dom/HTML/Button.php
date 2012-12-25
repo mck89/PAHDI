@@ -23,6 +23,7 @@
  * @property		string		$formEnctype	Element's form enctype
  * @property		string		$formMethod		Element's form method
  * @property		string		$formTarget		Element's form target
+ * @property		string		$formNoValidate	Element's form noValidate state
  * @property		bool		$disabled		Element's disable state
  * @property		bool		$autofocus		Element's autofocus state
  */
@@ -53,9 +54,14 @@ class HTMLButtonElement extends HTMLElement
 			case "formEnctype":
 			case "formMethod":
 			case "formTarget":
+			case "formNoValidate":
 				$form = $this->form;
 				if ($form) {
-					$prop = strtolower(str_replace("form", "", $name));
+					if ($prop === "formNoValidate") {
+						$prop = "noValidate";
+					} else {
+						$prop = strtolower(str_replace("form", "", $name));
+					}
 					return $form->$prop;
 				}
 			break;
@@ -89,9 +95,14 @@ class HTMLButtonElement extends HTMLElement
 			case "formEnctype":
 			case "formMethod":
 			case "formTarget":
+			case "formNoValidate":
 				$form = $this->form;
 				if ($form) {
-					$prop = strtolower(str_replace("form", "", $name));
+					if ($prop === "formNoValidate") {
+						$prop = "noValidate";
+					} else {
+						$prop = strtolower(str_replace("form", "", $name));
+					}
 					$form->$prop = $value;
 				}
 			break;

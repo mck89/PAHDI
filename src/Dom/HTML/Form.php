@@ -28,6 +28,7 @@
  * @property		string			$acceptCharset	Element's accepted charset
  * @property		string			$encoding		Alias of enctype
  * @property		string			$autocomplete	Element's autocomplete state
+ * @property		bool			$noValidate		Element's noValidate state
  */
 class HTMLFormElement extends HTMLElement
 {
@@ -78,6 +79,9 @@ class HTMLFormElement extends HTMLElement
 			break;
 			case "length":
 				return $this->elements->length;
+			break;
+			case "noValidate":
+				return $this->_getProperty($name, "bool");
 			break;
 			default:
 				//Search a form control with the given name
@@ -137,6 +141,9 @@ class HTMLFormElement extends HTMLElement
 			case "length":
 				$msg = "Setting a property that has only a getter";
 				throw new DomException($msg);
+			break;
+			case "noValidate":
+				return $this->_setProperty($name, $value, "bool");
 			break;
 			default:
 				parent::__set($name, $value);

@@ -17,6 +17,8 @@
  * @category    	PAHDI
  * @package     	PAHDI-DOM
  * @property		bool		$compact		Element's compact state
+ * @property		string		$label			Menu label
+ * @property		string		$type			Menu type
  */
 class HTMLMenuElement extends HTMLElement
 {
@@ -32,6 +34,14 @@ class HTMLMenuElement extends HTMLElement
 		switch ($name) {
 			case "compact":
 				return $this->_getProperty($name, "bool");
+			break;
+			case "label":
+				return $this->_getProperty($name);
+			break;
+			case "type":
+				$prop = $this->_getProperty($name);
+				$allowed = array("list", "toolbar", "context");
+				return in_array($prop, $allowed) ? $prop : "list";
 			break;
 			default:
 				return parent::__get($name);
@@ -52,6 +62,10 @@ class HTMLMenuElement extends HTMLElement
 		switch ($name) {
 			case "compact":
 				$this->_setProperty($name, $value, "bool");
+			break;
+			case "label":
+			case "type":
+				return $this->_setProperty($name, $value);
 			break;
 			default:
 				parent::__set($name, $value);

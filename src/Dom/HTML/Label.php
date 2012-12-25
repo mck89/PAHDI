@@ -16,7 +16,8 @@
  *
  * @category    	PAHDI
  * @package     	PAHDI-DOM
- * @property		string		$htmlFor	Element's "for"
+ * @property		string			$htmlFor	Element's "for"
+ * @property		HTMLElement		$control	Labeled control
  */
 class HTMLLabelElement extends HTMLElement
 {
@@ -32,6 +33,17 @@ class HTMLLabelElement extends HTMLElement
 		switch ($name) {
 			case "htmlFor":
 				return $this->_getProperty("for");
+			break;
+			case "control":
+				$for = $this->htmlFor;
+				if ($for !== "") {
+					return $this->ownerDocument->getElementById($for);
+				} else {
+					$controls = ParserHTML::$formAssociated;
+					$labelKey = array_search("label", $controls);
+					array_splice($controls, $labelKey, 1);
+					return $this->querySelector(implode(",", $controls));
+				}
 			break;
 			default:
 				return parent::__get($name);
@@ -51,7 +63,10 @@ class HTMLLabelElement extends HTMLElement
 	{
 		switch ($name) {
 			case "htmlFor":
-				$this->_setProperty("for");
+				$this->_setProperty("for", $value);
+			break;
+			case "control":
+				//Ignore
 			break;
 			default:
 				parent::__set($name, $value);

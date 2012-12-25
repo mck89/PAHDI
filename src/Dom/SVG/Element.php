@@ -17,6 +17,8 @@
  * @category    	PAHDI
  * @package     	PAHDI-DOM
  * @property-read	SVGSVGElement	$ownerSVGElement	Nearest ancestor SVG
+ * @property-read	SVGSVGElement	$viewportElement	The element which established
+ *														the current viewport.
  */
 class SVGElement extends Element
 {
@@ -38,7 +40,7 @@ class SVGElement extends Element
 	{
 		switch ($name) {
 			case "ownerSVGElement":
-				if (!$this->parentNode) {
+				if ($this->tagName === "svg" || !$this->parentNode) {
 					return null;
 				} elseif ($this->parentNode->nodeType === self::ELEMENT_NODE &&
 					$this->parentNode->tagName === "svg") {
@@ -46,6 +48,9 @@ class SVGElement extends Element
 				} else {
 					return $this->parentNode->ownerSVGElement;
 				}
+			break;
+			case "viewportElement":
+				return $this->ownerSVGElement;
 			break;
 			default:
 				return parent::__get($name);
@@ -66,6 +71,7 @@ class SVGElement extends Element
 	{
 		switch ($name) {
 			case "ownerSVGElement":
+			case "viewportElement":
 				$msg = "Setting a property that has only a getter";
 				throw new DomException($msg);
 			break;

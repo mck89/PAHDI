@@ -19,7 +19,7 @@
  * @property		string		$align		Element's alignment
  * @property		string		$width		Element's width
  * @property		string		$height		Element's height
- * @property		string		$sandobox	Element's sandbox attribute
+ * @property		string		$sandbox	Element's sandbox attribute
  * @property		string		$srcdoc		Iframe document source
  */
 class HTMLIFrameElement extends HTMLFrameElement
@@ -51,7 +51,7 @@ class HTMLIFrameElement extends HTMLFrameElement
 			case "height":
 				return $this->_getProperty($name, "intperc");
 			break;
-			case "sandobox":
+			case "sandbox":
 				return $this->_getProperty($name, "bool");
 			break;
 			case "contentDocument":
@@ -92,7 +92,7 @@ class HTMLIFrameElement extends HTMLFrameElement
 			case "height":
 				$this->_setProperty($name, $value, "intperc");
 			break;
-			case "sandobox":
+			case "sandbox":
 				$this->_setProperty($name, $value, "bool");
 			break;
 			default:

@@ -16,7 +16,8 @@
  *
  * @category    	PAHDI
  * @package     	PAHDI-DOM
- * @property		string		$type		Element's type
+ * @property		string		$type			Element's type
+ * @property		bool		$crossOrigin	Element's crossOrigin state
  */
 class SVGScriptElement extends SVGElement
 {
@@ -33,6 +34,9 @@ class SVGScriptElement extends SVGElement
 		switch ($name) {
 			case "type":
 				$ret = $this->_getProperty($name);
+			break;
+			case "crossOrigin":
+				return $this->_getProperty($name, "bool");
 			break;
 			default:
 				$ret = parent::__get($name);
@@ -54,7 +58,10 @@ class SVGScriptElement extends SVGElement
 		switch ($name) {
 			case "type":
 				$this->_setProperty($name, $value);
-			break;			
+			break;
+			case "crossOrigin":
+				$this->_setProperty($name, $value, "bool");
+			break;
 			default:
 				parent::__set($name, $value);
 			break;

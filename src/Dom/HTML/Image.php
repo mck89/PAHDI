@@ -16,17 +16,18 @@
  *
  * @category    	PAHDI
  * @package     	PAHDI-DOM
- * @property		string		$name		Element's name
- * @property		string		$alt		Element's alt text
- * @property		string		$src		Element's source
- * @property		string		$align		Element's alignment
- * @property		string		$useMap		Element's useMap
- * @property		string		$longDesc	Element's longDesc
- * @property		int			$hspace		Element's horizontal space
- * @property		int			$vspace		Element's vertical space
- * @property		string		$border		Element's border width
- * @property		string		$lowsrc		Element's lowsrc
- * @property		bool		$isMap		Element's ismap state
+ * @property		string		$name			Element's name
+ * @property		string		$alt			Element's alt text
+ * @property		string		$src			Element's source
+ * @property		string		$align			Element's alignment
+ * @property		string		$useMap			Element's useMap
+ * @property		string		$longDesc		Element's longDesc
+ * @property		int			$hspace			Element's horizontal space
+ * @property		int			$vspace			Element's vertical space
+ * @property		string		$border			Element's border width
+ * @property		string		$lowsrc			Element's lowsrc
+ * @property		bool		$isMap			Element's ismap state
+ * @property		bool		$crossOrigin	Element's crossOrigin state
  */
 class HTMLImageElement extends HTMLElement
 {
@@ -56,6 +57,7 @@ class HTMLImageElement extends HTMLElement
 				return (int) $this->_getProperty($name, "int", - 1);
 			break;
 			case "isMap":
+			case "crossOrigin":
 				return $this->_getProperty($name, "bool");
 			break;
 			case "border":
@@ -92,6 +94,7 @@ class HTMLImageElement extends HTMLElement
 				$this->_setProperty($name, (int) $value, "int", 0);
 			break;
 			case "isMap":
+			case "crossOrigin":
 				$this->_setProperty($name, $value, "bool");
 			break;
 			case "border":
